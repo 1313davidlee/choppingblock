@@ -104,6 +104,8 @@
             
                 
                 <script>
+
+                    var curr_category
                     // using d3 for convenience
                     var main = d3.select('main')
                     var scrolly = main.select('#scrolly');
@@ -157,7 +159,7 @@
                         scroller.setup({
                             step: '#scrolly article .step',
                             offset: 0.33,
-                            debug: false,
+                            debug: true,
                         })
                         
                             .onStepEnter(handleStepEnter)
@@ -177,7 +179,7 @@
 
 
 
-
+            
 
 
 
@@ -185,8 +187,8 @@
        
 
         <script id='personIconBefore' type='"text/x-lodash-template'>
-            <div  style='color:green' class='personContainer'>
-                    <i class="material-icons personIcon">
+            <div  class='personContainer'>
+                    <i style='color:green' class="material-icons personIcon">
                             accessibility_new
                     </i>
             </div>
