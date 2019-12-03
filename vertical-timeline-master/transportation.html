@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="assets/css/style.css">
+
+
+  <!-- <link rel="stylesheet" href="examples.css" type="text/css"> -->
+  <script src='assets/js/index.js'></script>
+	<script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="ScrollMagic.js"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+	<!-- <script type="text/javascript" src="debug.addIndicators.js"></script> -->
+
+
+</head>
+
+<style>
+    .container2 {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      color: white;
+    }
+
+    .container2 img {
+    /* -webkit-filter: grayscale(100%);
+    filter: grayscale(50%); */
+    filter: brightness(50%);;
+  }
+    
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 60px;
+      font-style: oblique;
+      font-weight: 900;
+    }
+
+    .populationBlock{
+        width: 90%;
+        height: 90%;
+        display: flex;
+        flex-flow: wrap;
+    }
+
+    .personIcon{
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 120%;
+        color: white;
+        
+    }
+
+    .personContainer{
+        height: 2.4vw;
+        width: 2.4vw;
+        margin: 0px;
+    }
+  </style>
+
+
+<body>
+
+    <header class="cd-main-header text-center flex flex-column flex-center" style="height: 50px; font-size: 10px;">
+      <a href="intro.html"><i style='color:rgba(255, 255, 255, 0.35); font-size: 35px; position: absolute; top: 8px; left: 9px;' class="material-icons">
+          home
+      </i></a>
+
+        <h1 style="color: rgba(255, 255, 255, 0.35); font-family: Arial, Helvetica, sans-serif; font-weight: 600; font-size: 20px;">PATH TO AUTONOMY</h1>
+    </header>
+
+  <div class="container2">
+    <img src="images/transportationbanner.png">
+    <div class="centered">Autonomous Driving</div>
+  </div>
+
+
+
+
+
+  <div style="float: left; width:70%;">
+  <section class="cd-timeline js-cd-timeline">
+    <div class="container max-width-lg cd-timeline__container">
+      <div class="cd-timeline__block">
+        <div class="cd-timeline__img cd-timeline__img--picture">
+          <img src="assets/img/cd-icon-picture.svg" alt="Picture">
+        </div> <!-- cd-timeline__img -->
+
+        <div class="cd-timeline__content text-component">
+            <div class="flex justify-between items-center">
+              <span class="cd-timeline__date">Apr 2019</span>
+            </div>
+          <h2>Level 4 Automation Achieved!</h2>
+          <p class="color-contrast-medium">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <img src="images/waymo.png">
+          
+        </div> <!-- cd-timeline__content -->
+      </div> <!-- cd-timeline__block -->
+
+      <div class="cd-timeline__block">
+        <div class="cd-timeline__img cd-timeline__img--movie">
+          <img src="assets/img/cd-icon-movie.svg" alt="Movie">
+        </div> <!-- cd-timeline__img -->
+
+        <div class="cd-timeline__content text-component">
+          <div class="flex justify-between items-center">
+            <span class="cd-timeline__date">Dec 2020</span>
+          </div>
+          <h2>Shrinking Demand for Truck Drivers: 60k Drivers Out Of Work</h2>
+          <p class="color-contrast-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
+          <img src="images/onedriver.jpg">
+
+
+          
+          
+        </div> <!-- cd-timeline__content -->
+      </div> <!-- cd-timeline__block -->
+
+      <div class="cd-timeline__block">
+          <div class="cd-timeline__img cd-timeline__img--location">
+            <img src="assets/img/cd-icon-location.svg" alt="Location">
+          </div> <!-- cd-timeline__img -->
+  
+          <div class="cd-timeline__content text-component">
+            <div class="flex justify-between items-center">
+              <span class="cd-timeline__date">Apr 2021</span>
+            </div>
+            <h2>Trucking Goes Fully Autonomous</h2>
+            <p class="color-contrast-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
+            <img src="images/autonomoustruck.jpg">
+          </div> <!-- cd-timeline__content -->
+        </div> <!-- cd-timeline__block -->
+
+      <div class="cd-timeline__block">
+        <div class="cd-timeline__img cd-timeline__img--picture">
+          <img src="assets/img/cd-icon-picture.svg" alt="Picture">
+        </div> <!-- cd-timeline__img -->
+
+        <div class="cd-timeline__content text-component">
+          <div class="flex justify-between items-center">
+            <span class="cd-timeline__date">Mar 2021</span>
+          </div>
+          <h2>Uber launches Level 5 Autonomous Vehicle Ride Service</h2>
+          <p class="color-contrast-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis.</p>
+          <img src="images/driverlessuber.jpg">
+          
+        </div> <!-- cd-timeline__content -->
+      </div> <!-- cd-timeline__block -->
+
+      <div class="cd-timeline__block">
+        <div class="cd-timeline__img cd-timeline__img--location">
+          <img src="assets/img/cd-icon-location.svg" alt="Location">
+        </div> <!-- cd-timeline__img -->
+
+        <div class="cd-timeline__content text-component">
+          <div class="flex justify-between items-center">
+            <span class="cd-timeline__date">Nov 2022</span>
+          </div>
+          <h2>Level 5 Autonomous Vehicles For Consumers Finally Debut</h2>
+          <p class="color-contrast-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+          <img src="images/fulllyautonomous.jpg">
+          
+        </div> <!-- cd-timeline__content -->
+      </div> <!-- cd-timeline__block -->
+
+      
+
+      <div class="cd-timeline__block">
+        <div class="cd-timeline__img cd-timeline__img--movie">
+          <img src="assets/img/cd-icon-movie.svg" alt="Movie">
+        </div> <!-- cd-timeline__img -->
+
+        <div class="cd-timeline__content text-component">
+          <div class="flex justify-between items-center">
+            <span class="cd-timeline__date">Aug 2023</span>
+          </div>
+          <h2>California Prohibits Passenger Driving On HighWays</h2>
+          <p class="color-contrast-medium">This is the content of the last section</p>
+
+        </div> <!-- cd-timeline__content -->
+      </div> <!-- cd-timeline__block -->
+    </div>
+    <a href="intro.html" class="btn btn--subtle" style="margin-top: 5%; margin-left: 39%;">Choose Different Industry</a>
+
+  </section> <!-- cd-timeline -->
+  </div>
+
+
+
+
+<!--  -->
+  <div style="float: left; width:30%; outline: white solid 3px;">
+
+    <div style="margin-left: 2%; margin-right: 2%; background-color: #E8EFF5">
+        <section id="titlechart">
+            <div id="description">
+            </div>
+            <script>
+              // init controller
+              var controller = new ScrollMagic.Controller();
+            </script>
+          </section>
+          <section class="demo">
+              
+            <div class="spacer s2" style="height: 309px;"></div>
+            <div id="trigger1" class="spacer s0"></div>
+            <div id="pin1" style="padding-bottom: 50px; margin-top: -309px;">
+
+            <h4 style="text-align: center; margin-top: 20px;">100 Persons Scale</h4>
+            <h5 style="text-align: center; font-style: italic;"><span style="color: green;">employed</span> vs. <span style="color: red;">unemployed</span></h5>
+              <figure id='mainPopulationBlock' style="">
+                <div id='populationBlock' class='populationBlock' style="margin: 5%; outline: black solid 1px; padding-top: 15px; padding-left: 10px;">
+                  <img src="fakeppl.png" style="width:95%; margin-top: -10px;">
+                </div>
+            </figure>
+                
+                <!-- <img id="sonny" src="images/image1.jpg" style="height: 300px; width: 100%; border: 3px solid #E8EFF5; border-radius: 30px;" > -->
+                <p id="sonnytxt" style="margin: 5%; font-size: 17px;">text</p>
+            </div>
+            <script>
+              $(function () { // wait for document ready
+                // build scene
+                var scene = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 3988})
+                        .setPin("#pin1")
+                        .addIndicators({name: "1 (duration: 300)"}) // add indicators (requires plugin)
+                        .addTo(controller);
+              });
+            </script>
+          </section>
+
+    </div>
+  </div>
+
+  <script id='personIconBefore' type='"text/x-lodash-template'>
+      <div  class='personContainer'>
+          <i style='color:green' class="material-icons personIcon">
+                  accessibility_new
+          </i>
+      </div>
+  </script>
+
+  <script id='personIconAfter' type='"text/x-lodash-template'>
+      <div  class='personContainer'>
+          <i style='color:red' class="material-icons personIcon">
+                  accessibility_new
+          </i>
+      </div>
+  </script>
+
+
+
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
