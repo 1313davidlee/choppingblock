@@ -1,158 +1,47 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src='/index.js'></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         
         <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
         <script src="https://unpkg.com/scrollama"></script>
+        <script src='https://unpkg.com/d3@5.9.1/dist/d3.min.js'></script>
+        <script src='https://russellgoldenberg.github.io/scrollama/stickyfill.min.js'></script>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel='stylesheet' href='styles.css'></link>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-       
-
-
     </head>
 
     <body >
         <h1>On The Chopping Block</h1>
         <h2>Jobs Soon To Be Replaced By AI</h2>
-        <input id='submit-button' type='submit'></input>
+      
         <div class='introContainer'>
 
         </div>
         <div class='selectContainer'>
-            <div class='pathOption'>
+            <div id='submit-button' onclick="renderPeople('cs1')" class='pathOption'>
                 Computer Science Majors
             </div>
-            <div class='pathOption'>
+            <div id='submit-button' class='pathOption'>
                 Flight School Candidates
             </div>
-            <div class='pathOption'>
+            <div id='submit-button' class='pathOption'>
                 Psychology Majors
             </div>
 
         </div>
-            
-            <div>
-                
+
+
+            <div>        
                 <main>
-                                     
-            
                     <section id='scrolly'>
 
-
-                        <!--
-                        <div class='scroll_graphic'>
-                            <div class='chart'>
-
-                            </div>
-                        </div>
-
-                        <script>
-
-                            var $container = d3.select('#scrolly');
-                            var $graphic = container.select('.scroll_graphic');
-                            var $chart = graphic.select('.chart');
-                            var $text = container.select('.scroll__text');
-                            var $step = text.selectAll('.step');
-
-                            // initialize the scrollama
-                            var scroller = scrollama();
-
-                            // resize function to set dimensions on load and on page resize
-                            function handleResize() {
-                                // 1. update height of step elements for breathing room between steps
-                               // var stepHeight = Math.floor(window.innerHeight * 0.75);
-                              //  $step.style('height', stepHeight + 'px');
-
-                                // 2. update height of graphic element
-                                var bodyWidth = d3.select('body').node().offsetWidth;
-
-                                $graphic
-                                    .style('height', window.innerHeight + 'px');
-
-                                // 3. update width of chart by subtracting from text width
-                                var chartMargin = 32;
-                               // var textWidth = $text.node().offsetWidth;
-                                var chartWidth = $graphic.node().offsetWidth - chartMargin;
-                                // make the height 1/2 of viewport
-                                var chartHeight = Math.floor(window.innerHeight / 2);
-
-                                $chart
-                                    .style('width', chartWidth + 'px')
-                                    .style('height', chartHeight + 'px');
-
-                                // 4. tell scrollama to update new element dimensions
-                                scroller.resize();
-                            }
-
-                            // scrollama event handlers
-                            function handleStepEnter(response) {
-                            // response = { element, direction, index }
-
-                            // fade in current step
-                            $step.classed('is-active', function (d, i) {
-                            return i === response.index;
-                            })
-
-                            function handleContainerEnter(response) {
-                            // response = { direction }
-
-                            // sticky the graphic
-                            $graphic.classed('is-fixed', true);
-                            $graphic.classed('is-bottom', false);
-                            }
-
-                            function handleContainerExit(response) {
-                            // response = { direction }
-
-                            // un-sticky the graphic, and pin to top/bottom of container
-                            $graphic.classed('is-fixed', false);
-                            $graphic.classed('is-bottom', response.direction === 'down');
-                            }
-
-                            
-                            function init() {
-                                // 1. call a resize on load to update width/height/position of elements
-                                handleResize();
-
-                                // 2. setup the scrollama instance
-                                // 3. bind scrollama event handlers (this can be chained like below)
-                                scroller
-                                    .setup({
-                                        container: '#scrolly', // our outermost scrollytelling element
-                                        graphic: '.scroll__graphic', // the graphic
-                                        //text: '.scroll__text', // the step container
-                                       // step: '.scroll__text .step', // the step elements
-                                        offset: 0.5, // set the trigger to be 1/2 way down screen
-                                        debug: true, // display the trigger offset for testing
-                                    })
-                                  //  .onStepEnter(handleStepEnter)
-                                    .onContainerEnter(handleContainerEnter)
-                                    .onContainerExit(handleContainerExit);
-
-                                // setup resize event
-                                window.addEventListener('resize', handleResize);
-                            }
-
-                            init()
-                        </script>
-                    -->
-                 
-
-                    <!--    <div class='sidePanel'>
-                            <div class='dot'>
-
-                            </div>
-                        </div>-->
                         <div class='timeline'>
                                 <figure id='dot'>
 
@@ -170,9 +59,7 @@
                             <div class='step' data-step='3'>
                                 <p>STEP 3</p>
                             </div>
-                            <div class='step' data-step='4'>
-                                <p>STEP 4</p>
-                            </div>
+                            
                         </article>
             
                         <figure id='mainPopulationBlock'>
@@ -181,6 +68,8 @@
                             </div>
                         </figure>
 
+                        
+
                        
                     </section>
 
@@ -188,12 +77,32 @@
                         GRAPHS GOING HERE
                     </section>
             
-                    <section id='outro'></section>
+                    <section id='outro'>
+                        <div class='outroText'>
+                            Try Another Path
+                        </div>
+                        <div class='selectContainer'>
+                                <a  href='#scrolly'>
+                                    <div onclick="location.reload();" class='pathRetry'>
+                                            Computer Science Majors
+                                    </div>
+                                </a>
+                                <a  href='#scrolly'>
+                                        <div onclick="location.reload();" class='pathRetry'>
+                                            Flight School Candidates
+                                        </div>
+                                </a>
+                                <a  href='#scrolly'>
+                                        <div onclick="location.reload();" class='pathRetry'>
+                                            Psychology Majors
+                                        </div>
+                                </a>
+                    
+                        </div>
+                    </section>
                 </main>
             
-                <script src='https://unpkg.com/d3@5.9.1/dist/d3.min.js'></script>
-                <script src='https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js'></script>
-                <script src='https://russellgoldenberg.github.io/scrollama/stickyfill.min.js'></script>
+                
                 <script>
                     // using d3 for convenience
                     var main = d3.select('main')
@@ -222,7 +131,7 @@
                     }
                     // scrollama event handlers
                     function handleStepEnter(response) {
-                        console.log(response)
+                        console.log("this is the response", response)
                         // response = { element, direction, index }
                         // add color to current step only
                         step.classed('is-active', function (d, i) {
@@ -230,6 +139,8 @@
                         })
                         // update graphic based on step
                         figure.select('p').text(response.index + 1);
+                        renderPeople('cs' + (response.index + 1))
+                        console.log('calling render people with index', response.index + 1)
                     }
                     function setupStickyfill() {
                         d3.selectAll('.sticky').each(function () {
@@ -246,7 +157,7 @@
                         scroller.setup({
                             step: '#scrolly article .step',
                             offset: 0.33,
-                            debug: true,
+                            debug: false,
                         })
                         
                             .onStepEnter(handleStepEnter)
@@ -273,9 +184,17 @@
 
        
 
-        <script id='personIcon' type='"text/x-lodash-template'>
-            <div  class='personContainer'>
+        <script id='personIconBefore' type='"text/x-lodash-template'>
+            <div  style='color:green' class='personContainer'>
                     <i class="material-icons personIcon">
+                            accessibility_new
+                    </i>
+            </div>
+        </script>
+
+        <script id='personIconAfter' type='"text/x-lodash-template'>
+            <div  class='personContainer'>
+                    <i style='color:red' class="material-icons personIcon">
                             accessibility_new
                     </i>
             </div>

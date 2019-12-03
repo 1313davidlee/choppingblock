@@ -1,6 +1,12 @@
 
 body {
     background-color: rgb(51, 66, 83);
+    margin: 0px;
+}
+
+a{
+    text-decoration: none;
+
 }
 
 h1 {
@@ -44,6 +50,13 @@ h2 {
     color: white;
     font-weight: bold;
     padding: 10px;
+    cursor: pointer;
+}
+
+.pathOption:hover{
+    background: white;
+    color: rgb(51, 66, 83);
+
 }
 
 .contentParent{
@@ -106,7 +119,7 @@ h2 {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background-color: #f3f3f3;
+
     padding: 1rem;
 }
 #scrolly>* {
@@ -129,7 +142,6 @@ figure {
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    background-color: #8a8a8a;
     z-index: 0;
 }
 figure p {
@@ -147,13 +159,12 @@ figure p {
 }
 
 #dot{
-    height: 15px;
-    width: 15px;
-    color: red;
-    background: red;
-    border-radius: 100%;
-    max-width: 15px;
-    max-height: 15px;
+    height: 2px;
+    width: 30px;
+    background: white;
+    max-width: 30px;
+    max-height: 5px;
+    margin-left: -8px;
     
 }
 
@@ -168,9 +179,10 @@ figure p {
 }
 
 .timeline{
-    width: 30px;
-    background-color: black;
-    max-width: 30px;
+    width: 15px;
+    background-color: #8f91cc;
+    max-width: 15px;
+    justify-content: center;
 }
 
 .step {
@@ -191,11 +203,50 @@ figure p {
     font-size: 1.5rem;
 }
 
-#outro{
-    height: 600px;
+#graphDisplay{
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    font-size: 40px;
+    color: white;
+
+
 }
 
+#outro{
+}
 
+.outroText{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    margin-top: 40px;
+
+}
+
+.pathRetry{
+    margin: 80px;
+    border: 3px solid white;
+    border-radius: 100%;
+    height: 150px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+.pathRetry:hover{
+    color: rgb(51, 66, 83);
+    background: white;
+}
 
 
 
