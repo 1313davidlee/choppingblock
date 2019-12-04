@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.getElementsByTagName("html")[0].className += " js";</script>
   <link rel="stylesheet" href="assets/css/style.css">
@@ -14,149 +12,411 @@
   <script src='assets/js/index.js'></script>
 	<script type="text/javascript" src="jquery.min.js"></script>
   <script type="text/javascript" src="ScrollMagic.js"></script>
-  
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src="./dashboard_files/bundle.js"></script>
   
 	<!-- <script type="text/javascript" src="debug.addIndicators.js"></script> -->
 
 
 </head>
 
+
+
 <style>
-  .container2 {
-    position: relative;
-    width: 100%;
-    text-align: center;
-    color: white;
-  }
-
-  .container2 img {
-  /* -webkit-filter: grayscale(100%);
-  filter: grayscale(50%); */
-  filter: brightness(50%);;
-}
-  
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 60px;
-    font-style: oblique;
-    font-weight: 900;
-  }
-
-  .populationBlock{
-      width: 90%;
-      height: 90%;
-      display: flex;
-      flex-flow: wrap;
-  }
-
-  .personIcon{
-      height: 30%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 120%;
+    .container2 {
+      position: relative;
+      width: 100%;
+      text-align: center;
       color: white;
-      
-  }
+    }
 
-  .personContainer{
-      height: 2.4vw;
-      width: 2.4vw;
-      margin: 0px;
+    .container2 img {
+    /* -webkit-filter: grayscale(100%);
+    filter: grayscale(50%); */
+    filter: brightness(50%);;
   }
+    
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 60px;
+      font-style: oblique;
+      font-weight: 900;
+    }
+
+    .populationBlock{
+        width: 90%;
+        height: 90%;
+        display: flex;
+        flex-flow: wrap;
+    }
+
+    .populationBlock_top{
+        width: 90%;
+        height: 90%;
+        display: flex;
+        flex-flow: wrap;
+    }
+
+    .personIcon{
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 120%;
+        color: white;
+    }
+
+    .personIcon_top{
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 120%;
+        color: white;
+    }
+
+    .personContainer{
+        height: 2.4vw;
+        width: 2.4vw;
+        margin: 0px;
+    }
+
+    .charts {
+        font-size: 0;
+        margin-left: -12px;
+      }
+      .charts-placeholder {
+        text-align: center;
+        height: 1200px;
+        padding-top: 48px;
+      }
+      .data-date.placeholder { opacity: 0; }
+      .chart-outer-container {
+        display: inline-block;
+        width: 100vw;
+        margin-bottom: 16px;
+      }
+      .chart-inner-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+      }
+      .chart {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: 1px 1px 4px 0px #b0b0b0;
+      }
+      @media (min-width: 524px) {
+        /* body {
+          width: 500px;
+          margin: 12px auto 48px;
+        } */
+        .charts { margin-left: -8px; }
+        .chart-outer-container {
+          width: 484px;
+          padding: 8px;
+          margin-bottom: 0px;
+        }
+        .chart {
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+      }
+      /* @media (min-width: 1024px) {
+        body { width: 1000px; }
+      } */
+      @media (min-width: 1524px) {
+        body { width: 1500px; }
+      }
+      @media (min-width: 2024px) {
+        body { width: 2000px; }
+      }
   </style>
-
-  <style>
- 
-  text{
-    font-size: 16px;
-    font-family: Open Sans, sans-serif;
-  }
-  text.title{
-    font-size: 24px;
-    font-weight: 500;
-  }
-    text.subTitle{
-      font-weight: 500;
-      fill: #777777;
-    }
-    text.caption{
-      font-weight: 400;
-      font-size: 14px;
-      fill: #777777;
-    }
-    text.label{
-      font-weight: 600;
-    }
-  
-    text.valueLabel{
-     font-weight: 300;
-    }
-  
-    text.yearText{
-      font-size: 64px;
-      font-weight: 700;
-      opacity: 0.25;
-    }
-    .tick text {
-      fill: #777777;
-    }
-    .xAxis .tick:nth-child(2) text {
-      text-anchor: start;
-    }
-    .tick line {
-      shape-rendering: CrispEdges;
-      stroke: #dddddd;
-    }
-    .tick line.origin{
-      stroke: #aaaaaa;
-    }
-    path.domain{
-      display: none;
-    }
-</style>
 
 
 <body>
-<!--
+
     <header class="cd-main-header text-center flex flex-column flex-center" style="height: 50px; font-size: 10px;">
       <a href="intro.html"><i style='color:rgba(255, 255, 255, 0.35); font-size: 35px; position: absolute; top: 8px; left: 9px;' class="material-icons">
           home
       </i></a>
 
         <h1 style="color: rgba(255, 255, 255, 0.35); font-family: Arial, Helvetica, sans-serif; font-weight: 600; font-size: 20px;">PATH TO AUTONOMY</h1>
-    </header>-->
+    </header>
 
-  <div class="landerPage">
+  <!-- <div class="container2">
+    <img src="images/transportationbanner.png">
+    <div class="centered">Autonomous Driving</div>
+  </div> -->
+
+
+  <div style="text-align: center;">
+
+    <div class="landerPage">
  
-    <div class="titleText">Curbed</div>
-    <div class="subtitleText">How Uber's Rise to Power Killed the Taxi Industry</div>
-    <div style='font-size: 25px;' class="subtitleText">(and what could be coming next)</div>
-
-  </div>
-
-  <div class='introPanel'>
+        <div class="titleText">Curbed</div>
+        <div class="subtitleText">How Uber's Rise to Power Killed the Taxi Industry</div>
+        <div style='font-size: 25px;' class="subtitleText">(and what could be coming next)</div>
     
+      </div>
+    
+      <div class='introPanel'>
+        
+      </div>
+    
+      <div class='introPanel'>
+    
+      </div>
+
+    
+
+    <div class="charts" style="float: left;  margin-left: 4%;">
+    </div>
+
+    <div style="margin-bottom: 50px;">
+      <!-- <img src="fakeppl.png" style="width: 30%;"> -->
+
+      <!-- color -->
+      <div style="display: inline-block; margin-top: 7px; width: 55%; background-color: #E8EFF5; height: 467px; box-shadow: 1px 1px 4px 0px #b0b0b0; 
+      border: 1px solid #ccc; border-radius: 4px;"> 
+      <h4 style="text-align: center; margin-top: 20px; color: black;">100 Yellow Cab Drivers</h4>
+      <h5 style="text-align: center; font-style: italic;"><span style="color: yellow; font-weight: 900;">Yellow-cab</span> vs. <span style="color: whitesmoke; font-weight: 900;">Uber</span> vs. <span style="color: red; font-weight: 900;">Unemployed</span></h5>
+
+      <figure id='mainPopulationBlock_top' >
+          <div id='populationBlock_top' class='populationBlock_top' style="margin: 5%; outline: black solid 1px; padding-top: 15px; padding-left: 10px;">
+            <!-- <img src="fakeppl.png" style="width:95%; margin-top: -10px;"> -->
+          </div>
+      </figure>
+      <br>
+      
+      <input type="range" name="year" min="2010" max="2019" value="2010">
+      <span>Year </span><output></output>
+      
+      <p style="color: black; font-style: italic; font-size: 13px;">
+          <br>Slide bar to see change over time
+      </p>
+      <br><br>
+
+    </div>
+
+
+
+    </div>
+
+    
+    
+
+    <script type="text/javascript">
+      'use strict';
+
+      $(function() {
+        Highcharts.setOptions({
+          chart: {
+            backgroundColor: '#fcfcfc',
+            events: {
+              load: function() {
+                this.credits.element.onclick = function() {
+                  return false;
+                },
+                this.credits.element.ontouchstart = function() {
+                  return false;
+                }
+              }
+            },
+            style: {fontFamily: "'IBM Plex Mono', monospace"},
+            type: 'line'
+          },
+          credits: {
+            href: '#',
+            position: {y: -20},
+            style: {fontSize: '9px'},
+            text: 'Data via NYC TLC<br/>toddwschneider.com'
+          },
+          lang: {thousandsSep: ','},
+          plotOptions: {
+            area: {
+              animation: false,
+              marker: {enabled: false}
+            },
+            line: {
+              animation: false,
+              marker: {enabled: false}
+            },
+            series: {
+              label: {
+                connectorAllowed: true,
+                style: {
+                  fontSize: '12px',
+                  fontWeight: 'regular'
+                }
+              }
+            }
+          },
+          responsive: {
+            rules: [{
+              condition: {maxWidth: 10},
+              chartOptions: {
+                legend: {
+                  margin: 4,
+                  y: -14
+                },
+                title: {style: {fontSize: '18px'}},
+                tooltip: {split: false}
+              }
+            }]
+          },
+          time: {useUTC: true},
+          title: {style: {fontSize: '24px'}},
+          tooltip: {
+            dateTimeLabelFormats: {day: '%b %Y'},
+            pointFormat: '<span style="color: {point.color}">\u25CF</span> {series.name}: {point.y}<br/>',
+            split: true,
+            valueDecimals: 0
+          },
+          xAxis: {
+            labels: {
+              padding: 10,
+              style: {fontSize: '12px'}
+            },
+            type: 'datetime'
+          },
+          yAxis: {
+            labels: {style: {fontSize: '12px'}},
+            min: 0,
+            title: {text: null}
+          }
+        });
+
+        var percentTooltipFormat = '<span style="color: {point.color}">\u25CF</span> {series.name}: {point.y}%<br/>'
+        var dollarTooltipFormat = '<span style="color: {point.color}">\u25CF</span> {series.name}: ${point.y}<br/>'
+
+        var colors = {
+          yellow: '#f7b731',
+          green: '#3f9e4d',
+          fhv_high_volume: '#153e67',
+          fhv_black_car: '#444444',
+          fhv_livery: '#888888',
+          fhv_lux_limo: '#aaaaaa',
+          uber: '#000000',
+          lyft: '#ff00bf',
+          juno: '#29509f',
+          via: '#1fb7e9',
+          gett: '#fdb924'
+        };
+
+        var names = {
+          yellow: 'Yellow taxi',
+          green: 'Green taxi',
+          fhv_high_volume: 'Ridehailing apps',
+          fhv_black_car: 'Black car',
+          fhv_livery: 'Livery car',
+          fhv_lux_limo: 'Limo',
+          uber: 'Uber',
+          lyft: 'Lyft',
+          juno: 'Juno',
+          via: 'Via',
+          gett: 'Gett'
+        };
+
+        var carTypes = {
+          ridehailing: ['uber', 'lyft', 'juno', 'via'],
+          taxi: ['yellow', 'green'],
+          tlc: ['yellow', 'green', 'fhv_high_volume', 'fhv_livery'],
+          tlc_shared: ['fhv_high_volume']
+        };
+
+        var $charts = $('.charts');
+
+        var dataUrl = 'https://taxi.toddwschneider.com/dashboard_data.json';
+        $.getJSON(dataUrl).then(function(data) {
+          updateText(data);
+          $('.charts-placeholder').remove();
+          drawAllGraphs(data);
+        });
+
+        $('#filters').on('change', function() {
+          var val = $(this).val();
+          if (val === 'all') {
+            $('.chart-outer-container').fadeIn();
+          } else {
+            $('.chart-outer-container.' + val).fadeIn();
+            $('.chart-outer-container:not(.' + val + ')').fadeOut();
+          }
+        });
+
+        function updateText(data) {
+          var dataUpdatedText = [
+            'Data available by license class through <b>',
+            data.tlc_date,
+            '</b>, by ridehailing app through <b>',
+            data.fhv_date,
+            '</b>'
+          ].join('');
+
+          $('.data-date').html(dataUpdatedText).removeClass('placeholder');
+        }
+
+        function drawAllGraphs(data) {
+          drawGraph(data, 'tlc', 'unique_drivers', 'Unique drivers per month');
+        }
+
+        function drawGraph(data, carCategory, field, title, extraOptions) {
+          var chartId = carCategory + '-' + field;
+          if (extraOptions && extraOptions.chart) {
+            chartId = chartId + '-' + extraOptions.chart.type;
+          }
+          var wrapperClass = carCategory === 'tlc_shared' ? 'tlc' : carCategory;
+          var chartHtml = '<div class="chart-outer-container ' + wrapperClass + '"><div class="chart-inner-container"><div class="chart" id="' + chartId + '"></div></div></div>';
+
+          $charts.append(chartHtml);
+
+          var seriesData = carTypes[carCategory].map(function(carType) {
+            return {
+              name: names[carType],
+              color: colors[carType],
+              data: zipArrays(
+                data[carType].month,
+                data[carType][field]
+              )
+            };
+          });
+          if (extraOptions && extraOptions.chart) {
+            seriesData = seriesData.reverse();
+          }
+
+          Highcharts.chart(
+            chartId,
+            $.extend({
+              title: {text: title},
+              series: seriesData
+            }, extraOptions)
+          );
+        }
+
+        function zipArrays(a1, a2) {
+          return a1.map(function(e, i) {
+            return [e, a2[i]];
+          });
+        }
+      });
+    </script>
+
   </div>
-
-  <div class='introPanel'>
-
-  </div>
-
-
-  
   
 
 
 
 
-
-
+  <div style="width: 98%; margin-left: 1%;">
   <div style="float: left; width:70%;">
   <section class="cd-timeline js-cd-timeline">
     <div class="container max-width-lg cd-timeline__container">
@@ -169,11 +429,12 @@
             <div class="flex justify-between items-center">
               <span class="cd-timeline__date">Apr 2019</span>
             </div>
-          <h2>Level 4 Automation Achieved!</h2>
+          <h2>Uber goes Live in New York City</h2>
           <p class="color-contrast-medium">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Uber starts operation in NYC despite heavy pushback from the traditional taxi industry.<br><br>
+              Users do not have to talk to a dispatcher to request a vehicle. The smartphone app provides quote for the trip.
           </p>
-          <img src="images/waymo.png">
+          <img src="images/uniquedriverspermonth.png" style="width: 70%;">
           
         </div> <!-- cd-timeline__content -->
       </div> <!-- cd-timeline__block -->
@@ -191,11 +452,12 @@
           <p class="color-contrast-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
           <img src="images/onedriver.jpg">
 
-
-          
+          <button>Pedestrian Killed in Accident</button> <button>Uber succesfully tests Level 5</button>
           
         </div> <!-- cd-timeline__content -->
       </div> <!-- cd-timeline__block -->
+
+
 
       <div class="cd-timeline__block">
           <div class="cd-timeline__img cd-timeline__img--location">
@@ -259,7 +521,7 @@
           <p class="color-contrast-medium">This is the content of the last section</p>
 
         </div> <!-- cd-timeline__content -->
-      </div> <!-- cd-timeline__block -->
+      </div>
     </div>
     <a href="intro.html" class="btn btn--subtle" style="margin-top: 5%; margin-left: 39%;">Choose Different Industry</a>
 
@@ -272,7 +534,7 @@
 <!--  -->
   <div style="float: left; width:30%; outline: white solid 3px;">
 
-    <div style="margin-left: 2%; margin-right: 2%; background-color: #E8EFF5">
+    <div style="margin-left: 2%; margin-right: 2%; background-color: black">
         <section id="titlechart">
             <div id="description">
             </div>
@@ -287,9 +549,10 @@
             <div id="trigger1" class="spacer s0"></div>
             <div id="pin1" style="padding-bottom: 50px; margin-top: -309px;">
 
-            <h4 style="text-align: center; margin-top: 20px;">100 Persons Scale</h4>
-            <h5 style="text-align: center; font-style: italic;"><span style="color: green;">employed</span> vs. <span style="color: red;">unemployed</span></h5>
-              <figure id='mainPopulationBlock' style="">
+            <h4 style="text-align: center; margin-top: 20px; color: white;">100 Yellow Cab Drivers</h4>
+            <h5 style="text-align: center; font-style: italic;"><span style="color: yellow; font-weight: 900;">Yellow-cab</span> vs. <span style="color: whitesmoke; font-weight: 900;">Uber</span> vs. <span style="color: red; font-weight: 900;">Unemployed</span></h5>
+
+            <figure id='mainPopulationBlock' style="">
                 <div id='populationBlock' class='populationBlock' style="margin: 5%; outline: black solid 1px; padding-top: 15px; padding-left: 10px;">
                   <img src="fakeppl.png" style="width:95%; margin-top: -10px;">
                 </div>
@@ -311,10 +574,11 @@
 
     </div>
   </div>
+</div>
 
   <script id='personIconBefore' type='"text/x-lodash-template'>
       <div  class='personContainer'>
-          <i style='color:green' class="material-icons personIcon">
+          <i style='color:yellow' class="material-icons personIcon">
                   accessibility_new
           </i>
       </div>
@@ -328,7 +592,21 @@
       </div>
   </script>
 
+  <script id='personIconBefore_top' type='"text/x-lodash-template'>
+    <div  class='personContainer'>
+        <i style='color:green' class="material-icons personIcon">
+                accessibility_new
+        </i>
+    </div>
+</script>
 
+<script id='personIconAfter_top' type='"text/x-lodash-template'>
+  <div  class='personContainer'>
+      <i style='color:red' class="material-icons personIcon">
+              accessibility_new
+      </i>
+  </div>
+</script>
 
   <script src="assets/js/main.js"></script>
 
