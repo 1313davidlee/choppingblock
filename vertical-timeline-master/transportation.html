@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.getElementsByTagName("html")[0].className += " js";</script>
   <link rel="stylesheet" href="assets/css/style.css">
@@ -15,109 +13,133 @@
   <script type="text/javascript" src="ScrollMagic.js"></script>
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src="./dashboard_files/bundle.js"></script>
   
 	<!-- <script type="text/javascript" src="debug.addIndicators.js"></script> -->
 
 
 </head>
 
+
+
 <style>
-  .container2 {
-    position: relative;
-    width: 100%;
-    text-align: center;
-    color: white;
-  }
-
-  .container2 img {
-  /* -webkit-filter: grayscale(100%);
-  filter: grayscale(50%); */
-  filter: brightness(50%);;
-}
-  
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 60px;
-    font-style: oblique;
-    font-weight: 900;
-  }
-
-  .populationBlock{
-      width: 90%;
-      height: 90%;
-      display: flex;
-      flex-flow: wrap;
-  }
-
-  .personIcon{
-      height: 30%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 120%;
+    .container2 {
+      position: relative;
+      width: 100%;
+      text-align: center;
       color: white;
-      
-  }
+    }
 
-  .personContainer{
-      height: 2.4vw;
-      width: 2.4vw;
-      margin: 0px;
+    .container2 img {
+    /* -webkit-filter: grayscale(100%);
+    filter: grayscale(50%); */
+    filter: brightness(50%);;
   }
+    
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 60px;
+      font-style: oblique;
+      font-weight: 900;
+    }
+
+    .populationBlock{
+        width: 90%;
+        height: 90%;
+        display: flex;
+        flex-flow: wrap;
+    }
+
+    .populationBlock_top{
+        width: 90%;
+        height: 90%;
+        display: flex;
+        flex-flow: wrap;
+    }
+
+    .personIcon{
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 120%;
+        color: white;
+    }
+
+    .personIcon_top{
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 120%;
+        color: white;
+    }
+
+    .personContainer{
+        height: 2.4vw;
+        width: 2.4vw;
+        margin: 0px;
+    }
+
+    .charts {
+        font-size: 0;
+        margin-left: -12px;
+      }
+      .charts-placeholder {
+        text-align: center;
+        height: 1200px;
+        padding-top: 48px;
+      }
+      .data-date.placeholder { opacity: 0; }
+      .chart-outer-container {
+        display: inline-block;
+        width: 100vw;
+        margin-bottom: 16px;
+      }
+      .chart-inner-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+      }
+      .chart {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: 1px 1px 4px 0px #b0b0b0;
+      }
+      @media (min-width: 524px) {
+        /* body {
+          width: 500px;
+          margin: 12px auto 48px;
+        } */
+        .charts { margin-left: -8px; }
+        .chart-outer-container {
+          width: 484px;
+          padding: 8px;
+          margin-bottom: 0px;
+        }
+        .chart {
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+      }
+      /* @media (min-width: 1024px) {
+        body { width: 1000px; }
+      } */
+      @media (min-width: 1524px) {
+        body { width: 1500px; }
+      }
+      @media (min-width: 2024px) {
+        body { width: 2000px; }
+      }
   </style>
-
-  <style>
- 
-  text{
-    font-size: 16px;
-    font-family: Open Sans, sans-serif;
-  }
-  text.title{
-    font-size: 24px;
-    font-weight: 500;
-  }
-    text.subTitle{
-      font-weight: 500;
-      fill: #777777;
-    }
-    text.caption{
-      font-weight: 400;
-      font-size: 14px;
-      fill: #777777;
-    }
-    text.label{
-      font-weight: 600;
-    }
-  
-    text.valueLabel{
-     font-weight: 300;
-    }
-  
-    text.yearText{
-      font-size: 64px;
-      font-weight: 700;
-      opacity: 0.25;
-    }
-    .tick text {
-      fill: #777777;
-    }
-    .xAxis .tick:nth-child(2) text {
-      text-anchor: start;
-    }
-    .tick line {
-      shape-rendering: CrispEdges;
-      stroke: #dddddd;
-    }
-    .tick line.origin{
-      stroke: #aaaaaa;
-    }
-    path.domain{
-      display: none;
-    }
-</style>
 
 
 <body>
@@ -136,279 +158,251 @@
   </div>
 
 
-  
-  <script>
-    // Feel free to change or delete any of the code you see in this editor!
-    var svg = d3.select("body").append("svg")
-      .attr("width", 960)
-      .attr("height", 600);
-    
-    
-    
-    var tickDuration = 500;
-    
-    var top_n = 12;
-    var height = 600;
-    var width = 960;
-    
-    const margin = {
-      top: 80,
-      right: 0,
-      bottom: 5,
-      left: 0
-    };
-  
-    let barPadding = (height-(margin.bottom+margin.top))/(top_n*5);
-      
-    let title = svg.append('text')
-     .attr('class', 'title')
-     .attr('y', 24)
-     .html('18 years of Interbrand’s Top Global Brands');
-  
-    let subTitle = svg.append("text")
-     .attr("class", "subTitle")
-     .attr("y", 55)
-     .html("Brand value, $m");
-   
-    let caption = svg.append('text')
-     .attr('class', 'caption')
-     .attr('x', width)
-     .attr('y', height-5)
-     .style('text-anchor', 'end')
-     .html('Source: Interbrand');
+  <div style="text-align: center;">
+    <p style="color: black;">
+        <br><br><br>David's Stuff<br><br><br>
+    </p>
 
-     let year = 2000;
     
-  d3.csv('driver_data.csv').then(function(data) {
-    //if (error) throw error;
+
+    <div class="charts" style="float: left;  margin-left: 4%;">
+    </div>
+
+    <div style="margin-bottom: 50px;">
+      <!-- <img src="fakeppl.png" style="width: 30%;"> -->
+
+      <!-- color -->
+      <div style="display: inline-block; margin-top: 7px; width: 55%; background-color: #E8EFF5; height: 467px; box-shadow: 1px 1px 4px 0px #b0b0b0; 
+      border: 1px solid #ccc; border-radius: 4px;"> 
+      <h4 style="text-align: center; margin-top: 20px; color: black;">100 Yellow Cab Drivers</h4>
+      <h5 style="text-align: center; font-style: italic;"><span style="color: yellow; font-weight: 900;">Yellow-cab</span> vs. <span style="color: whitesmoke; font-weight: 900;">Uber</span> vs. <span style="color: red; font-weight: 900;">Unemployed</span></h5>
+
+      <figure id='mainPopulationBlock_top' >
+          <div id='populationBlock_top' class='populationBlock_top' style="margin: 5%; outline: black solid 1px; padding-top: 15px; padding-left: 10px;">
+            <!-- <img src="fakeppl.png" style="width:95%; margin-top: -10px;"> -->
+          </div>
+      </figure>
+      <br>
       
-      console.log(data);
+      <input type="range" name="year" min="2010" max="2019" value="2010">
+      <span>Year </span><output></output>
       
-       data.forEach(d => {
-        d.value = +d.value,
-        d.lastValue = +d.lastValue,
-        d.value = isNaN(d.value) ? 0 : d.value,
-        d.year = +d.year,
-        d.colour = d3.hsl(Math.random()*360,0.75,0.75)
+      <p style="color: black; font-style: italic; font-size: 13px;">
+          <br>Slide bar to see change over time
+      </p>
+      <br><br>
+
+    </div>
+
+
+
+    </div>
+
+    
+    
+
+    <script type="text/javascript">
+      'use strict';
+
+      $(function() {
+        Highcharts.setOptions({
+          chart: {
+            backgroundColor: '#fcfcfc',
+            events: {
+              load: function() {
+                this.credits.element.onclick = function() {
+                  return false;
+                },
+                this.credits.element.ontouchstart = function() {
+                  return false;
+                }
+              }
+            },
+            style: {fontFamily: "'IBM Plex Mono', monospace"},
+            type: 'line'
+          },
+          credits: {
+            href: '#',
+            position: {y: -20},
+            style: {fontSize: '9px'},
+            text: 'Data via NYC TLC<br/>toddwschneider.com'
+          },
+          lang: {thousandsSep: ','},
+          plotOptions: {
+            area: {
+              animation: false,
+              marker: {enabled: false}
+            },
+            line: {
+              animation: false,
+              marker: {enabled: false}
+            },
+            series: {
+              label: {
+                connectorAllowed: true,
+                style: {
+                  fontSize: '12px',
+                  fontWeight: 'regular'
+                }
+              }
+            }
+          },
+          responsive: {
+            rules: [{
+              condition: {maxWidth: 10},
+              chartOptions: {
+                legend: {
+                  margin: 4,
+                  y: -14
+                },
+                title: {style: {fontSize: '18px'}},
+                tooltip: {split: false}
+              }
+            }]
+          },
+          time: {useUTC: true},
+          title: {style: {fontSize: '24px'}},
+          tooltip: {
+            dateTimeLabelFormats: {day: '%b %Y'},
+            pointFormat: '<span style="color: {point.color}">\u25CF</span> {series.name}: {point.y}<br/>',
+            split: true,
+            valueDecimals: 0
+          },
+          xAxis: {
+            labels: {
+              padding: 10,
+              style: {fontSize: '12px'}
+            },
+            type: 'datetime'
+          },
+          yAxis: {
+            labels: {style: {fontSize: '12px'}},
+            min: 0,
+            title: {text: null}
+          }
+        });
+
+        var percentTooltipFormat = '<span style="color: {point.color}">\u25CF</span> {series.name}: {point.y}%<br/>'
+        var dollarTooltipFormat = '<span style="color: {point.color}">\u25CF</span> {series.name}: ${point.y}<br/>'
+
+        var colors = {
+          yellow: '#f7b731',
+          green: '#3f9e4d',
+          fhv_high_volume: '#153e67',
+          fhv_black_car: '#444444',
+          fhv_livery: '#888888',
+          fhv_lux_limo: '#aaaaaa',
+          uber: '#000000',
+          lyft: '#ff00bf',
+          juno: '#29509f',
+          via: '#1fb7e9',
+          gett: '#fdb924'
+        };
+
+        var names = {
+          yellow: 'Yellow taxi',
+          green: 'Green taxi',
+          fhv_high_volume: 'Ridehailing apps',
+          fhv_black_car: 'Black car',
+          fhv_livery: 'Livery car',
+          fhv_lux_limo: 'Limo',
+          uber: 'Uber',
+          lyft: 'Lyft',
+          juno: 'Juno',
+          via: 'Via',
+          gett: 'Gett'
+        };
+
+        var carTypes = {
+          ridehailing: ['uber', 'lyft', 'juno', 'via'],
+          taxi: ['yellow', 'green'],
+          tlc: ['yellow', 'green', 'fhv_high_volume', 'fhv_livery'],
+          tlc_shared: ['fhv_high_volume']
+        };
+
+        var $charts = $('.charts');
+
+        var dataUrl = 'https://taxi.toddwschneider.com/dashboard_data.json';
+        $.getJSON(dataUrl).then(function(data) {
+          updateText(data);
+          $('.charts-placeholder').remove();
+          drawAllGraphs(data);
+        });
+
+        $('#filters').on('change', function() {
+          var val = $(this).val();
+          if (val === 'all') {
+            $('.chart-outer-container').fadeIn();
+          } else {
+            $('.chart-outer-container.' + val).fadeIn();
+            $('.chart-outer-container:not(.' + val + ')').fadeOut();
+          }
+        });
+
+        function updateText(data) {
+          var dataUpdatedText = [
+            'Data available by license class through <b>',
+            data.tlc_date,
+            '</b>, by ridehailing app through <b>',
+            data.fhv_date,
+            '</b>'
+          ].join('');
+
+          $('.data-date').html(dataUpdatedText).removeClass('placeholder');
+        }
+
+        function drawAllGraphs(data) {
+          drawGraph(data, 'tlc', 'unique_drivers', 'Unique drivers per month');
+        }
+
+        function drawGraph(data, carCategory, field, title, extraOptions) {
+          var chartId = carCategory + '-' + field;
+          if (extraOptions && extraOptions.chart) {
+            chartId = chartId + '-' + extraOptions.chart.type;
+          }
+          var wrapperClass = carCategory === 'tlc_shared' ? 'tlc' : carCategory;
+          var chartHtml = '<div class="chart-outer-container ' + wrapperClass + '"><div class="chart-inner-container"><div class="chart" id="' + chartId + '"></div></div></div>';
+
+          $charts.append(chartHtml);
+
+          var seriesData = carTypes[carCategory].map(function(carType) {
+            return {
+              name: names[carType],
+              color: colors[carType],
+              data: zipArrays(
+                data[carType].month,
+                data[carType][field]
+              )
+            };
+          });
+          if (extraOptions && extraOptions.chart) {
+            seriesData = seriesData.reverse();
+          }
+
+          Highcharts.chart(
+            chartId,
+            $.extend({
+              title: {text: title},
+              series: seriesData
+            }, extraOptions)
+          );
+        }
+
+        function zipArrays(a1, a2) {
+          return a1.map(function(e, i) {
+            return [e, a2[i]];
+          });
+        }
       });
+    </script>
 
-     console.log(data);
-    
-     let yearSlice = data.filter(d => d.year == year && !isNaN(d.value))
-      .sort((a,b) => b.value - a.value)
-      .slice(0, top_n);
-  
-      yearSlice.forEach((d,i) => d.rank = i);
-    
-     console.log('yearSlice: ', yearSlice)
-  
-     let x = d3.scaleLinear()
-        .domain([0, d3.max(yearSlice, d => d.value)])
-        .range([margin.left, width-margin.right-65]);
-  
-     let y = d3.scaleLinear()
-        .domain([top_n, 0])
-        .range([height-margin.bottom, margin.top]);
-  
-     let xAxis = d3.axisTop()
-        .scale(x)
-        .ticks(width > 500 ? 5:2)
-        .tickSize(-(height-margin.top-margin.bottom))
-        .tickFormat(d => d3.format(',')(d));
-  
-     svg.append('g')
-       .attr('class', 'axis xAxis')
-       .attr('transform', `translate(0, ${margin.top})`)
-       .call(xAxis)
-       .selectAll('.tick line')
-       .classed('origin', d => d == 0);
-  
-     svg.selectAll('rect.bar')
-        .data(yearSlice, d => d.name)
-        .enter()
-        .append('rect')
-        .attr('class', 'bar')
-        .attr('x', x(0)+1)
-        .attr('width', d => x(d.value)-x(0)-1)
-        .attr('y', d => y(d.rank)+5)
-        .attr('height', y(1)-y(0)-barPadding)
-        .style('fill', d => d.colour);
-      
-     svg.selectAll('text.label')
-        .data(yearSlice, d => d.name)
-        .enter()
-        .append('text')
-        .attr('class', 'label')
-        .attr('x', d => x(d.value)-8)
-        .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
-        .style('text-anchor', 'end')
-        .html(d => d.name);
-      
-    svg.selectAll('text.valueLabel')
-      .data(yearSlice, d => d.name)
-      .enter()
-      .append('text')
-      .attr('class', 'valueLabel')
-      .attr('x', d => x(d.value)+5)
-      .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
-      .text(d => d3.format(',.0f')(d.lastValue));
-
-    let yearText = svg.append('text')
-      .attr('class', 'yearText')
-      .attr('x', width-margin.right)
-      .attr('y', height-25)
-      .style('text-anchor', 'end')
-      .html(~~year)
-      .call(halo, 10);
-     
-   let ticker = d3.interval(e => {
-
-      yearSlice = data.filter(d => d.year == year && !isNaN(d.value))
-        .sort((a,b) => b.value - a.value)
-        .slice(0,top_n);
-
-      yearSlice.forEach((d,i) => d.rank = i);
-     
-      //console.log('IntervalYear: ', yearSlice);
-
-      x.domain([0, d3.max(yearSlice, d => d.value)]); 
-     
-      svg.select('.xAxis')
-        .transition()
-        .duration(tickDuration)
-        .ease(d3.easeLinear)
-        .call(xAxis);
-    
-       let bars = svg.selectAll('.bar').data(yearSlice, d => d.name);
-    
-       bars
-        .enter()
-        .append('rect')
-        .attr('class', d => `bar ${d.name.replace(/\s/g,'_')}`)
-        .attr('x', x(0)+1)
-        .attr( 'width', d => x(d.value)-x(0)-1)
-        .attr('y', d => y(top_n+1)+5)
-        .attr('height', y(1)-y(0)-barPadding)
-        .style('fill', d => d.colour)
-        .transition()
-          .duration(tickDuration)
-          .ease(d3.easeLinear)
-          .attr('y', d => y(d.rank)+5);
-          
-       bars
-        .transition()
-          .duration(tickDuration)
-          .ease(d3.easeLinear)
-          .attr('width', d => x(d.value)-x(0)-1)
-          .attr('y', d => y(d.rank)+5);
-            
-       bars
-        .exit()
-        .transition()
-          .duration(tickDuration)
-          .ease(d3.easeLinear)
-          .attr('width', d => x(d.value)-x(0)-1)
-          .attr('y', d => y(top_n+1)+5)
-          .remove();
-
-       let labels = svg.selectAll('.label')
-          .data(yearSlice, d => d.name);
-     
-       labels
-        .enter()
-        .append('text')
-        .attr('class', 'label')
-        .attr('x', d => x(d.value)-8)
-        .attr('y', d => y(top_n+1)+5+((y(1)-y(0))/2))
-        .style('text-anchor', 'end')
-        .html(d => d.name)    
-        .transition()
-          .duration(tickDuration)
-          .ease(d3.easeLinear)
-          .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1);
-             
-    
-   	   labels
-          .transition()
-          .duration(tickDuration)
-            .ease(d3.easeLinear)
-            .attr('x', d => x(d.value)-8)
-            .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1);
-     
-       labels
-          .exit()
-          .transition()
-            .duration(tickDuration)
-            .ease(d3.easeLinear)
-            .attr('x', d => x(d.value)-8)
-            .attr('y', d => y(top_n+1)+5)
-            .remove();
-         
-
-     
-       let valueLabels = svg.selectAll('.valueLabel').data(yearSlice, d => d.name);
-    
-       valueLabels
-          .enter()
-          .append('text')
-          .attr('class', 'valueLabel')
-          .attr('x', d => x(d.value)+5)
-          .attr('y', d => y(top_n+1)+5)
-          .text(d => d3.format(',.0f')(d.lastValue))
-          .transition()
-            .duration(tickDuration)
-            .ease(d3.easeLinear)
-            .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1);
-            
-       valueLabels
-          .transition()
-            .duration(tickDuration)
-            .ease(d3.easeLinear)
-            .attr('x', d => x(d.value)+5)
-            .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
-            .tween("text", function(d) {
-               let i = d3.interpolateRound(d.lastValue, d.value);
-               return function(t) {
-                 this.textContent = d3.format(',')(i(t));
-              };
-            });
-      
-     
-      valueLabels
-        .exit()
-        .transition()
-          .duration(tickDuration)
-          .ease(d3.easeLinear)
-          .attr('x', d => x(d.value)+5)
-          .attr('y', d => y(top_n+1)+5)
-          .remove();
-    
-      yearText.html(~~year);
-     
-     if(year == 2018) ticker.stop();
-     year = d3.format('.1f')((+year) + 0.1);
-   },tickDuration);
-
- });
-    
- const halo = function(text, strokeWidth) {
-  text.select(function() { return this.parentNode.insertBefore(this.cloneNode(true), this); })
-    .style('fill', '#ffffff')
-     .style( 'stroke','#ffffff')
-     .style('stroke-width', strokeWidth)
-     .style('stroke-linejoin', 'round')
-     .style('opacity', 1);
-   
-}   
+  </div>
   
 
-  </script>
 
 
 
-
-
-
+  <div style="width: 98%; margin-left: 1%;">
   <div style="float: left; width:70%;">
   <section class="cd-timeline js-cd-timeline">
     <div class="container max-width-lg cd-timeline__container">
@@ -421,11 +415,12 @@
             <div class="flex justify-between items-center">
               <span class="cd-timeline__date">Apr 2019</span>
             </div>
-          <h2>Level 4 Automation Achieved!</h2>
+          <h2>Uber goes Live in New York City</h2>
           <p class="color-contrast-medium">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Uber starts operation in NYC despite heavy pushback from the traditional taxi industry.<br><br>
+              Users do not have to talk to a dispatcher to request a vehicle. The smartphone app provides quote for the trip.
           </p>
-          <img src="images/waymo.png">
+          <img src="images/uniquedriverspermonth.png" style="width: 70%;">
           
         </div> <!-- cd-timeline__content -->
       </div> <!-- cd-timeline__block -->
@@ -443,11 +438,12 @@
           <p class="color-contrast-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
           <img src="images/onedriver.jpg">
 
-
-          
+          <button>Pedestrian Killed in Accident</button> <button>Uber succesfully tests Level 5</button>
           
         </div> <!-- cd-timeline__content -->
       </div> <!-- cd-timeline__block -->
+
+
 
       <div class="cd-timeline__block">
           <div class="cd-timeline__img cd-timeline__img--location">
@@ -511,7 +507,7 @@
           <p class="color-contrast-medium">This is the content of the last section</p>
 
         </div> <!-- cd-timeline__content -->
-      </div> <!-- cd-timeline__block -->
+      </div>
     </div>
     <a href="intro.html" class="btn btn--subtle" style="margin-top: 5%; margin-left: 39%;">Choose Different Industry</a>
 
@@ -524,7 +520,7 @@
 <!--  -->
   <div style="float: left; width:30%; outline: white solid 3px;">
 
-    <div style="margin-left: 2%; margin-right: 2%; background-color: #E8EFF5">
+    <div style="margin-left: 2%; margin-right: 2%; background-color: black">
         <section id="titlechart">
             <div id="description">
             </div>
@@ -539,9 +535,10 @@
             <div id="trigger1" class="spacer s0"></div>
             <div id="pin1" style="padding-bottom: 50px; margin-top: -309px;">
 
-            <h4 style="text-align: center; margin-top: 20px;">100 Persons Scale</h4>
-            <h5 style="text-align: center; font-style: italic;"><span style="color: green;">employed</span> vs. <span style="color: red;">unemployed</span></h5>
-              <figure id='mainPopulationBlock' style="">
+            <h4 style="text-align: center; margin-top: 20px; color: white;">100 Yellow Cab Drivers</h4>
+            <h5 style="text-align: center; font-style: italic;"><span style="color: yellow; font-weight: 900;">Yellow-cab</span> vs. <span style="color: whitesmoke; font-weight: 900;">Uber</span> vs. <span style="color: red; font-weight: 900;">Unemployed</span></h5>
+
+            <figure id='mainPopulationBlock' style="">
                 <div id='populationBlock' class='populationBlock' style="margin: 5%; outline: black solid 1px; padding-top: 15px; padding-left: 10px;">
                   <img src="fakeppl.png" style="width:95%; margin-top: -10px;">
                 </div>
@@ -563,10 +560,11 @@
 
     </div>
   </div>
+</div>
 
   <script id='personIconBefore' type='"text/x-lodash-template'>
       <div  class='personContainer'>
-          <i style='color:green' class="material-icons personIcon">
+          <i style='color:yellow' class="material-icons personIcon">
                   accessibility_new
           </i>
       </div>
@@ -580,7 +578,21 @@
       </div>
   </script>
 
+  <script id='personIconBefore_top' type='"text/x-lodash-template'>
+    <div  class='personContainer'>
+        <i style='color:green' class="material-icons personIcon">
+                accessibility_new
+        </i>
+    </div>
+</script>
 
+<script id='personIconAfter_top' type='"text/x-lodash-template'>
+  <div  class='personContainer'>
+      <i style='color:red' class="material-icons personIcon">
+              accessibility_new
+      </i>
+  </div>
+</script>
 
   <script src="assets/js/main.js"></script>
 
