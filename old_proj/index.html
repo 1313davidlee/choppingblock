@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src='/index.js'></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        
+        <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+        <script src="https://unpkg.com/scrollama"></script>
+        <script src='https://unpkg.com/d3@5.9.1/dist/d3.min.js'></script>
+        <script src='https://russellgoldenberg.github.io/scrollama/stickyfill.min.js'></script>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel='stylesheet' href='styles.css'></link>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body >
+        <h1>On The Chopping Block</h1>
+        <h2>Jobs Soon To Be Replaced By AI</h2>
+      
+        <div class='introContainer'>
+
+        </div>
+        <div class='selectContainer'>
+            <div id='submit-button' onclick="renderPeople('cs1')" class='pathOption'>
+                Computer Science Majors
+            </div>
+            <div id='submit-button' class='pathOption'>
+                Flight School Candidates
+            </div>
+            <div id='submit-button' class='pathOption'>
+                Psychology Majors
+            </div>
+
+        </div>
+
+
+            <div>        
+                <main>
+                    <section id='scrolly'>
+
+                        <div class='timeline'>
+                                <figure id='dot'>
+
+                                    </figure>
+                        </div>
+                        
+
+                        <article>
+                            <div class='step' data-step='1'>
+                                <p>STEP 1</p>
+                            </div>
+                            <div class='step' data-step='2'>
+                                <p>STEP 2</p>
+                            </div>
+                            <div class='step' data-step='3'>
+                                <p>STEP 3</p>
+                            </div>
+                            
+                        </article>
+            
+                        <figure id='mainPopulationBlock'>
+                            <div id='populationBlock' class='populationBlock'>
+                                <p>0</p>
+                            </div>
+                        </figure>
+
+                        
+
+                       
+                    </section>
+
+                    <section id='graphDisplay'>
+                        GRAPHS GOING HERE
+                    </section>
+            
+                    <section id='outro'>
+                        <div class='outroText'>
+                            Try Another Path
+                        </div>
+                        <div class='selectContainer'>
+                                <a  href='#scrolly'>
+                                    <div onclick="location.reload();" class='pathRetry'>
+                                            Computer Science Majors
+                                    </div>
+                                </a>
+                                <a  href='#scrolly'>
+                                        <div onclick="location.reload();" class='pathRetry'>
+                                            Flight School Candidates
+                                        </div>
+                                </a>
+                                <a  href='#scrolly'>
+                                        <div onclick="location.reload();" class='pathRetry'>
+                                            Psychology Majors
+                                        </div>
+                                </a>
+                    
+                        </div>
+                    </section>
+                </main>
+            
+                
+                <script>
+
+                    var curr_category
+                    // using d3 for convenience
+                    var main = d3.select('main')
+                    var scrolly = main.select('#scrolly');
+                    var figure = scrolly.selectAll('figure');
+                    var article = scrolly.select('article');
+                    var step = article.selectAll('.step');
+                    var sidePanel = scrolly.select('.sidePanel')
+                    var dot = scrolly.select('.dot')
+                    var aside = scrolly.select('aside')
+
+                    // initialize the scrollama
+                    var scroller = scrollama();
+                    // generic window resize listener event
+                    function handleResize() {
+                        // 1. update height of step elements
+                        var stepH = Math.floor(window.innerHeight * 0.75);
+                        step.style('height', stepH + 'px');
+                        var figureHeight = window.innerHeight / 2
+                        var figureMarginTop = (window.innerHeight - figureHeight) / 2
+                        figure
+                            .style('height', figureHeight + 'px')
+                            .style('top', figureMarginTop + 'px');
+                        // 3. tell scrollama to update new element dimensions
+                        scroller.resize();
+                    }
+                    // scrollama event handlers
+                    function handleStepEnter(response) {
+                        console.log("this is the response", response)
+                        // response = { element, direction, index }
+                        // add color to current step only
+                        step.classed('is-active', function (d, i) {
+                            return i === response.index;
+                        })
+                        // update graphic based on step
+                        figure.select('p').text(response.index + 1);
+                        renderPeople('cs' + (response.index + 1))
+                        console.log('calling render people with index', response.index + 1)
+                    }
+                    function setupStickyfill() {
+                        d3.selectAll('.sticky').each(function () {
+                            Stickyfill.add(this);
+                        });
+                    }
+                    function init() {
+                        setupStickyfill();
+                        // 1. force a resize on load to ensure proper dimensions are sent to scrollama
+                        handleResize();
+                        // 2. setup the scroller passing options
+                        // 		this will also initialize trigger observations
+                        // 3. bind scrollama event handlers (this can be chained like below)
+                        scroller.setup({
+                            step: '#scrolly article .step',
+                            offset: 0.33,
+                            debug: true,
+                        })
+                        
+                            .onStepEnter(handleStepEnter)
+                        // setup resize event
+                        window.addEventListener('resize', handleResize);
+                    }
+                    // kick things off
+                    init();
+                </script>
+            </div>
+            
+            
+
+
+
+
+
+
+
+            
+
+
+
+
+       
+
+        <script id='personIconBefore' type='"text/x-lodash-template'>
+            <div  class='personContainer'>
+                    <i style='color:green' class="material-icons personIcon">
+                            accessibility_new
+                    </i>
+            </div>
+        </script>
+
+        <script id='personIconAfter' type='"text/x-lodash-template'>
+            <div  class='personContainer'>
+                    <i style='color:red' class="material-icons personIcon">
+                            accessibility_new
+                    </i>
+            </div>
+        </script>
+
+
+      
+
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+ 
+
