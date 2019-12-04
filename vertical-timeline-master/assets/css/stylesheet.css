@@ -37,3 +37,15 @@
     display: flex;
     border-bottom: 1px solid black;
 }
+
+.bar{ 
+    fill: steelblue; 
+
+}
+              
+.graphParent{
+    height: 100%;
+    width: 80%;
+    margin-left: 10%;
+    background: pink;
+}
