@@ -31,6 +31,8 @@
 	var event_num_check = 1;
 	var comparison = event_num_check;
 
+	
+
 	VerticalTimeline.prototype.showBlocks = function() {
 		if ( ! "classList" in document.documentElement ) {
 			return;
@@ -80,6 +82,8 @@
 		}
 	};
 
+	
+
 
 	
 
@@ -98,12 +102,31 @@
 			if( !scrolling ) {
 				scrolling = true;
 
-				console.log();
+				// console.log();
 
 				(!window.requestAnimationFrame) ? setTimeout(checkTimelineScroll, 250) : window.requestAnimationFrame(checkTimelineScroll);
 			}
 		});
 	}
+
+	initialRenderTop();
+
+	function checkoutput() {
+	let i = document.querySelector('input'),
+		o = document.querySelector('output');
+
+      o.innerHTML = i.value;
+
+      // use 'change' instead to see the difference in response
+      i.addEventListener('input', function () {
+		o.innerHTML = i.value;
+		edit_top_data();
+		renderTop();
+	  }, false);
+	};
+	
+	checkoutput();
+
 
 	function checkTimelineScroll() {
 		verticalTimelinesArray.forEach(function(timeline){
