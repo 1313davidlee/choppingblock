@@ -1,0 +1,39 @@
+.landerPage{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../img/taxis.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    
+}
+
+.titleText{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    font-size: 100px;
+    font-weight: 900;
+    margin-bottom: 10px;
+
+
+}
+
+.subtitleText{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    
+
+}
+
+.introPanel{
+    width: 100%;
+    color: black;
+    height: 500px;
+    display: flex;
+    border-bottom: 1px solid black;
+}

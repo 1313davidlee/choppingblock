@@ -63,7 +63,7 @@
     
     var tickDuration = 500;
     
-    var top_n = 6;
+    var top_n = 4;
     var height = 600;
     var width = 960;
     
@@ -78,7 +78,7 @@
       
     let title = svg.append('text')
      .attr('class', 'title')
-     .attr('y', 24)
+     .attr('y', 4)
      .html('18 years of Interbrand’s Top Global Brands');
   
     let subTitle = svg.append("text")
@@ -95,7 +95,7 @@
 
      let year = 2015;
     
-  d3.csv('driver_data.csv').then(function(data) {
+  d3.csv('finalBarData.csv').then(function(data) {
     //if (error) throw error;
       
       console.log(data);
