@@ -46,10 +46,10 @@
           <div class='medContent'>
             
             <div class='introTextTitle'>
-              A Mediallion
-            </div>
+              <span style="font-size: 30px;">Medallion</span>
+            </div><br>
             <div>
-              Is a license to drive a taxi cab. They often cost
+              is a <span style="font-weight: 900;">license to drive</span> a taxi cab. They often cost
               hundreds of thousands of dollars, a fee that is the main 
             barrier to entry of the taxi industry. Taxi drivers often take
             out loans to fund the purchase, and the resale of a medallion at the
@@ -57,7 +57,7 @@
              </div>
 
           </div>
-          <div class='graphParent'>
+          <div class='graphParent' >
       
           </div>
           <!--D3 bar chart for medallion prices-->
@@ -96,7 +96,7 @@
           
             // Scale the range of the data in the domains
             x.domain(data.map(function(d) { return d.salesperson; }));
-            y.domain([0,1000000]);
+            y.domain([400000,1000000]);
           
             // append the rectangles for the bar chart
             svg.selectAll(".bar")
@@ -115,7 +115,8 @@
           
             // add the y Axis
             svg.append("g")
-                .call(d3.axisLeft(y));
+                .call(d3.axisLeft(y)
+                .ticks(4));
           
           });
           
@@ -129,7 +130,7 @@
 
         </div>
         <div class='splitIntro'>
-            <img class='populationImg' src="images/populationImage.jpg" >
+            <img class='populationImg' src="images/populationImage.png" >
 
           </div>
         
@@ -296,7 +297,7 @@
         }
 
         function drawAllGraphs(data) {
-          drawGraph(data, 'tlc', 'unique_drivers', 'Unique drivers per month');
+          drawGraph(data, 'tlc', 'unique_drivers', '<span style="color:#303F4A; font-family:serif;">Drivers per Category</span>');
         }
 
         function drawGraph(data, carCategory, field, title, extraOptions) {
@@ -439,34 +440,34 @@
           </section>
           <section class="demo">
               
-            <div class="spacer s2" style="height: 300px;"></div>
+            <div class="spacer s2" style="margin-top: 5px; height: 300px;"></div>
             <div id="trigger1" class="spacer s0"></div>
             <div id="pin1" style="padding-bottom: 30px; margin-top: -300px;">
 
-            <h4 style="text-align: center; margin-top: 20px; color: white;">Yellow Cab Drivers<span id="yeartext" style="font-size: 15px;"> (2011)</span></h4>
+            <h4 style="text-align: center; margin-top: 20px; color: #303F4A;">Yellow Cab Drivers<span id="yeartext" style="font-size: 15px;"> (2011)</span></h4>
             <h5 style="font-size: 16px;text-align: center; font-style: italic; margin-bottom: 20px;"><span style="color: #dea302; font-weight: 900;">Active</span> vs. <span style="color: red; font-weight: 900;">Unemployed</span></h5>
             
             <div style="text-align: center;">
                 <i style='color:gray; display: inline;' class="material-icons personIcon">
                         accessibility_new
                 </i>
-                <h5 style="text-align: center; font-style: italic; font-size: 12px; display: inline; color: white;">represents 300 drivers</h5>
+                <h5 style="text-align: center; font-style: italic; font-size: 12px; display: inline; color: #303F4A;">represents 300 drivers</h5>
             </div>
 
             <figure id='mainPopulationBlock' style="">
-                <div id='populationBlock' class='populationBlock' style="margin: 5%; outline: white solid 1px; padding-top: 15px; padding-left: 16px; padding-bottom: 10px;">
+                <div id='populationBlock' class='populationBlock' style="margin: 5%; outline: #303F4A solid 1px; padding-top: 15px; padding-left: 16px; padding-bottom: 10px;">
                   <!-- <img src="fakeppl.png" style="width:95%; margin-top: -10px;"> -->
                 </div>
             </figure>
                 
                 <!-- <img id="sonny" src="images/image1.jpg" style="height: 300px; width: 100%; border: 3px solid #E8EFF5; border-radius: 30px;" > -->
-                <div style="color:white; margin: 5%; font-size: 20px;"><p style="display: inline; ">Medallion Price: </p><p style="display: inline;" id="medallionPrice">$123123</p></div>
-                <p id="sonnytxt" style="margin: 5%; font-size: 17px;">DATA</p>
+                <div style="color:#303F4A; margin: 5%; font-size: 20px;"><p style="display: inline; ">Medallion Price: </p><p style="display: inline;" id="medallionPrice">$123123</p></div>
+                <p id="sonnytxt" style="margin: 5%; font-size: 17px;"></p>
             </div>
             <script>
               $(function () { // wait for document ready
                 // build scene
-                var scene = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 2700})
+                var scene = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 2600})
                         .setPin("#pin1")
                         .addIndicators({name: "1 (duration: 300)"}) // add indicators (requires plugin)
                         .addTo(controller);
@@ -485,35 +486,41 @@
 
     <div style="display: inline-block; margin-top: 7px; width: 55%; background-color: white; height: 467px; box-shadow: 1px 1px 4px 0px #b0b0b0; 
     border: 1px solid #ccc; border-radius: 4px;"> 
-    <h4 style="text-align: center; margin-top: 20px; color: black;">For-Hire Driver Segmentation</h4>
-    <h5 style="text-align: center; font-style: italic;"><span style="color: #dea302; font-weight: 900;">Yellow-cab</span> vs. <span style="color: black; font-weight: 900;">Uber & Lyft</span></h5>
+    <h4 style="text-align: center; margin-top: 10px; color: #303F4A; font-family: serif; font-size: 24px;">For-Hire Driver Segmentation</h4>
+    <h5 style="text-align: center; font-size: 18px; font-style: italic;"><span style="color: #dea302; font-weight: 900;">Yellow-cab</span> vs. <span style="color: #303F4A; font-weight: 900;">Uber & Lyft</span></h5>
     
+    <br>
+    <div style="text-align: right; margin-right: 20px;">
+        <i style='color:#dea302; display: inline;' class="material-icons personIcon">
+                local_taxi
+        </i>
+        <h5 style="text-align: center; font-style: italic; font-size: 12px; display: inline; ">: 100k drivers</h5>
+      </div>
+
+    
+
     <figure id='mainPopulationBlock_top' >
-        <div id='populationBlock_top' class='populationBlock_top' style="height: 200px; margin: 5%; outline: black solid 1px; padding-top: 15px; padding-left: 10px;">
+        <div id='populationBlock_top' class='populationBlock_top' style="height: 200px; margin: 5%; outline: #303F4A solid 1px; padding-top: 15px; padding-left: 10px;">
         </div>
     </figure>
     <br>
 
+
     <div style="text-align: center;">
-        <i style='color:#dea302; display: inline;' class="material-icons personIcon">
-                accessibility_new
-        </i>
-        <h5 style="text-align: center; font-style: italic; font-size: 12px; display: inline; ">: 100k drivers</h5>
-    
-    <br>
-    
-    <input type="range" name="year" min="2010" max="2019" value="2010">
-    <span>Year </span><output></output>
-    
-    <p style="color: black; font-style: italic; font-size: 13px;">
-        <br>Slide bar to see change over time
-    </p>
-  </div>
+      <input type="range" name="year" min="2010" max="2019" value="2010">
+      <span>Year </span><output></output>
+      
+      <p style="color: #303F4A; font-style: italic; font-size: 13px;">
+          <br>Slide bar to see change over time
+      </p>
+
+
+    </div>
     <br><br>
 
   </div>
   <div class='splitterTitles'>
-    So, Uber must be doing great?
+    So, these companies must be doing great?
   </div>
   <div class='graphContentManager'>
       <div class='lossesGraphParent'>
@@ -856,15 +863,15 @@
   <script id='personIconBefore_top' type='"text/x-lodash-template'>
     <div  class='personContainer'>
         <i style='color:#dea302' class="material-icons personIcon">
-                accessibility_new
+                local_taxi
         </i>
     </div>
 </script>
 
 <script id='personIconAfter_top' type='"text/x-lodash-template'>
   <div  class='personContainer'>
-      <i style='color:red' class="material-icons personIcon">
-              accessibility_new
+      <i style='color:#303F4A' class="material-icons personIcon">
+              local_taxi
       </i>
   </div>
 </script>
