@@ -24,127 +24,6 @@
 
 </head>
 
-
-
-<style>
-    .container2 {
-      position: relative;
-      width: 100%;
-      text-align: center;
-      color: white;
-    }
-
-    .container2 img {
-    /* -webkit-filter: grayscale(100%);
-    filter: grayscale(50%); */
-    filter: brightness(50%);;
-  }
-    
-    .centered {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 60px;
-      font-style: oblique;
-      font-weight: 900;
-    }
-
-    .populationBlock{
-        width: 90%;
-        height: 90%;
-        display: flex;
-        flex-flow: wrap;
-    }
-
-    .populationBlock_top{
-        width: 90%;
-        height: 90%;
-        display: flex;
-        flex-flow: wrap;
-    }
-
-    .personIcon{
-        height: 30%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 120%;
-        color: white;
-    }
-
-    .personIcon_top{
-        height: 30%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 120%;
-        color: white;
-    }
-
-    .personContainer{
-        height: 2.4vw;
-        width: 2.4vw;
-        margin: 0px;
-    }
-
-    .charts {
-        font-size: 0;
-        margin-left: -12px;
-      }
-      .charts-placeholder {
-        text-align: center;
-        height: 1200px;
-        padding-top: 48px;
-      }
-      .data-date.placeholder { opacity: 0; }
-      .chart-outer-container {
-        display: inline-block;
-        width: 100vw;
-        margin-bottom: 16px;
-      }
-      .chart-inner-container {
-        position: relative;
-        width: 100%;
-        height: 0;
-        padding-bottom: 100%;
-      }
-      .chart {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        box-shadow: 1px 1px 4px 0px #b0b0b0;
-      }
-      @media (min-width: 524px) {
-        /* body {
-          width: 500px;
-          margin: 12px auto 48px;
-        } */
-        .charts { margin-left: -8px; }
-        .chart-outer-container {
-          width: 484px;
-          padding: 8px;
-          margin-bottom: 0px;
-        }
-        .chart {
-          border: 1px solid #ccc;
-          border-radius: 4px;
-        }
-      }
-      /* @media (min-width: 1024px) {
-        body { width: 1000px; }
-      } */
-      @media (min-width: 1524px) {
-        body { width: 1500px; }
-      }
-      @media (min-width: 2024px) {
-        body { width: 2000px; }
-      }
-  </style>
-
-
 <body>
 
 
@@ -164,30 +43,30 @@
       </div>
     
       <div class='introPanel'>
+          <div class='medContent'>
+            
+            <div class='introTextTitle'>
+              A Mediallion
+            </div>
+            <div>
+              Is a license to drive a taxi cab. They often cost
+              hundreds of thousands of dollars, a fee that is the main 
+            barrier to entry of the taxi industry. Taxi drivers often take
+            out loans to fund the purchase, and the resale of a medallion at the
+            end of a driver's career is often seen as the driver's retirement savings.
+             </div>
 
-          <style> /* set the CSS */
-
-              .bar { fill: steelblue; }
-              
-              .graphParent{
-                  height: 100%;
-                  width: 80%;
-                  margin-left: 10%;
-                  background: pink;
-              }
-              
-              </style>
-              
-              
-                  <div class='graphParent'>
-              
-                  </div>
+          </div>
+          <div class='graphParent'>
+      
+          </div>
+          <!--D3 bar chart for medallion prices-->
           <script>
           
           // set the dimensions and margins of the graph
-          var margin = {top: 20, right: 20, bottom: 30, left:100},
-              width = 960 - margin.left - margin.right,
-              height = 500 - margin.top - margin.bottom;
+          var margin = {top: 100, right: 20, bottom: 30, left:55},
+              width = 450 - margin.left - margin.right,
+              height = 300 - margin.top - margin.bottom;
           
           // set the ranges
           var x = d3.scaleBand()
@@ -243,15 +122,26 @@
           </script>
       </div>
 
+      <div class='introPanel'>
+        <div class='splitIntro introText'>
+          Let's follow 100 New York City taxi drivers
+          who bought their medallions in early 2010.
+
+        </div>
+        <div class='splitIntro'>
+            <img class='populationImg' src="/images/populationImage.JPG" >
+
+          </div>
+        
+      </div>
+
     
 
     <div class="charts" style="float: left;  margin-left: 4%;">
     </div>
 
     <div style="margin-bottom: 50px;">
-      <!-- <img src="fakeppl.png" style="width: 30%;"> -->
-
-      <!-- color -->
+ 
       <div style="display: inline-block; margin-top: 7px; width: 55%; background-color: #E8EFF5; height: 467px; box-shadow: 1px 1px 4px 0px #b0b0b0; 
       border: 1px solid #ccc; border-radius: 4px;"> 
       <h4 style="text-align: center; margin-top: 20px; color: black;">100 Yellow Cab Drivers</h4>
@@ -259,7 +149,6 @@
 
       <figure id='mainPopulationBlock_top' >
           <div id='populationBlock_top' class='populationBlock_top' style="margin: 5%; outline: black solid 1px; padding-top: 15px; padding-left: 10px;">
-            <!-- <img src="fakeppl.png" style="width:95%; margin-top: -10px;"> -->
           </div>
       </figure>
       <br>
@@ -279,8 +168,7 @@
     </div>
 
     
-    
-
+  
     <script type="text/javascript">
       'use strict';
 
