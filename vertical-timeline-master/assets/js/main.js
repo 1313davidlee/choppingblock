@@ -117,6 +117,7 @@
 		  o.innerHTML = i.value;
 		  edit_top_data();
 		  renderTop();
+		  growthRate(i.value);
 		}, false);
 	  };
 	  

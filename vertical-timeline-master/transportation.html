@@ -38,70 +38,74 @@
     
       </div>
     
-      <div class='introPanel1'>
-          <style>
-            .introPanelTitle{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 900;
-    font-size: 30px;
-    color: hsl(47, 85%, 61%);
-  
-  }
-  
-  .textparentwrap{
-    font-size:20px;
-    
-  }
-  
-  .introPanel1{
-    height: 500px;
-    padding: 200px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    line-height: 2;
-  
-  
-    
-  }</style>
-  
-    <div style='text-align: left;'>
-        
-        <div class='textparentwrap'>
-            <span class='introPanelTitle'>THE TAXI INDUSTRY</span>
-  
-          has long thrived in urban areas, providing stable incomes for drivers
-          and transporting hundreds of millions of people through America's cities.
-          
-          The 2010s have been a decade of extreme change for the urban transportation
-          industry with hundreds of thousands of drivers leaving their taxi careers, the 
-          price of medallions plummeting, and a constant buzz around Uber. In this
-          exploration, we investigate the relationships, both obvious and obscured, connecting
-          the various players and forces at work in the urban transporation industry of today.
-        </div>
-  
-    </div>
-          
-          
-        </div>
+      <!-- <div class='introPanel'>
+      </div> -->
     
       <div class='introPanel'>
+        <div class=introPanel1>
+  <style>
+      .introPanelTitle{
+        font-family: serif;
+        font-weight: 900;
+        font-size: 40px;
+        color: hsl(47, 85%, 61%);
+        line-height: 8px;
+
+      }
+
+      .textparentwrap{
+        font-size:20px;
+        
+      }
+
+      .introPanel1{
+        height: 500px;
+        padding: 200px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        line-height: 2;
+      }
+  </style>
+
+  <div style='text-align: left;'>
+      <div class='textparentwrap'>
+          <span class='introPanelTitle'>TAXI INDUSTRY</span>
+
+        has long thrived in urban areas, providing stable incomes for drivers
+        and transporting hundreds of millions of people through America's cities.
+
+        The 2010s have been a decade of extreme change for the urban transportation
+        industry with hundreds of thousands of drivers leaving their taxi careers, the 
+        price of medallions plummeting, and a constant buzz around Uber. In this
+        exploration, we investigate the relationships, both obvious and obscured, connecting
+        the various players and forces at work in the urban transporation industry of today.
+      </div>
+  </div>
+
+
+</div>
+</div>
+
+
+
+      <div class='introPanel'>
+
+
           <div class='medContent'>
             
+
             <div class='introTextTitle'>
               <span style="font-size: 30px;">Medallion</span>
             </div><br>
-            <div>
+            <div style="margin-right: 100px;">
               is a <span style="font-weight: 900;">license to drive</span> a taxi cab. They often cost
               hundreds of thousands of dollars, a fee that is the main 
             barrier to entry of the taxi industry. Taxi drivers often take
             out loans to fund the purchase, and the resale of a medallion at the
-            end of a driver's career is often seen as the driver's retirement savings. 
-
-            <br>
-            So what is caused the sudden crash in the medallion market in 2015?
+            end of a driver's career is often seen as the driver's retirement savings.
              </div>
 
           </div>
@@ -169,12 +173,17 @@
           });
           
           </script>
+
+
+
+
+
       </div>
 
       <div class='introPanel'>
         <div class='splitIntro introText'>
-          Let's follow 100 New York City taxi drivers
-          who bought their medallions in early 2010 to find out.
+          Let's follow 100 NYC taxi drivers
+          who bought<br>their medallions in early 2010.
 
         </div>
         <div class='splitIntro'>
@@ -345,7 +354,7 @@
         }
 
         function drawAllGraphs(data) {
-          drawGraph(data, 'tlc', 'unique_drivers', '<span style="color:#303F4A; font-family:serif;">Drivers per Category</span>');
+          drawGraph(data, 'tlc', 'unique_drivers', '<span style="color:#303F4A; font-family:serif;">Number of Drivers by Category</span>');
         }
 
         function drawGraph(data, carCategory, field, title, extraOptions) {
@@ -475,6 +484,8 @@
 
 
 <!--  -->
+
+
   <div style="float: left; width:30%; outline: white solid 3px;">
 
     <div style="margin-left: 2%; margin-right: 2%; background-color: white">
@@ -496,14 +507,15 @@
             <h5 style="font-size: 16px;text-align: center; font-style: italic; margin-bottom: 20px;"><span style="color: #dea302; font-weight: 900;">Active</span> vs. <span style="color: red; font-weight: 900;">Unemployed</span></h5>
             
             <div style="text-align: center;">
+              
                 <i style='color:gray; display: inline;' class="material-icons personIcon">
                         accessibility_new
                 </i>
-                <h5 style="text-align: center; font-style: italic; font-size: 12px; display: inline; color: #303F4A;">represents 300 drivers</h5>
+                <h5 style="text-align: center; font-style: italic; font-size: 12px; display: inline; color: #303F4A;">each figure represents 300 drivers</h5>
             </div>
 
             <figure id='mainPopulationBlock' style="">
-                <div id='populationBlock' class='populationBlock' style="margin: 5%; outline: #303F4A solid 1px; padding-top: 15px; padding-left: 16px; padding-bottom: 10px;">
+                <div id='populationBlock' class='populationBlock' style="margin: 5%; outline: #303F4A solid 1px; padding-top: 13px; padding-left: 13px; padding-bottom: 7px;">
                   <!-- <img src="fakeppl.png" style="width:95%; margin-top: -10px;"> -->
                 </div>
             </figure>
@@ -527,6 +539,9 @@
   </div>
 </div>
 
+<div class='introPanel' style="height: 10px; margin-bottom: 30px;"></div>
+
+
 <div class="charts" style="float: left;  margin-left: 4%;">
   </div>
 
@@ -542,24 +557,70 @@
         <i style='color:#dea302; display: inline;' class="material-icons personIcon">
                 local_taxi
         </i>
-        <h5 style="text-align: center; font-style: italic; font-size: 12px; display: inline; ">: 100k drivers</h5>
+        <h5 style="text-align: center; font-style: italic; font-size: 12px; display: inline; ">: 1,087 drivers</h5>
       </div>
 
     
 
     <figure id='mainPopulationBlock_top' >
-        <div id='populationBlock_top' class='populationBlock_top' style="height: 200px; margin: 5%; outline: #303F4A solid 1px; padding-top: 15px; padding-left: 10px;">
+        <div id='populationBlock_top' class='populationBlock_top' style="height: 200px; margin: 5%; margin-top: 5px; outline: #303F4A solid 1px; padding-top: 15px; padding-left: 10px;">
         </div>
     </figure>
+
+
+    <div style="text-align: center; display: inline;">
+        <style>
+            * {
+              box-sizing: border-box;
+            }
+            /* Create three equal columns that floats next to each other */
+            .column {
+              float: left;
+              width: 33.33%;
+              padding: 10px;
+              margin-top: -30px;
+              height: 60px;
+              /* text-align: left; */
+            }
+            
+            /* Clear floats after the columns */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+              margin-bottom: -100px;
+            }
+        </style>
+        <div class="row">
+            <div class="column" id="YC" style="line-height: 14px;">
+              <p>Yellow Cab: 30,000</p>
+            </div>
+            <div class="column" id="UL" style="line-height: 14px;">
+              <p>Uber & Lyft: 0</p>
+            </div>
+            <div class="column" id="TotalCars" style="line-height: 14px;">
+              <p>Total Drivers: 30,000</p>
+            </div>
+          </div>
+
+
+    </div>
+
+    <br>
+    
     <br>
 
+    <div style="text-align: center; margin-top: 30px;">
 
-    <div style="text-align: center;">
+      <div style="text-align: left; margin-left: 38%;">
       <input type="range" name="year" min="2010" max="2019" value="2010">
-      <span>Year </span><output></output>
-      
-      <p style="color: #303F4A; font-style: italic; font-size: 13px;">
-          <br>Slide bar to see change over time
+      <span style="font-size: 17px;">Year: </span><output></output><p id="growthrate" style=" display: inline;"></p>
+      </div>
+      <p id="growthrate2" style="color: #303F4A; font-style: italic; font-size: 15px;">
+          Slide bar to see change over time
+      </p>
+      <p id="descriptionGrowth" style="color: #303F4A; font-style: italic; font-size: 16px;">
+          <span style="color: white;">blank</span>
       </p>
 
 
@@ -567,6 +628,9 @@
     <br><br>
 
   </div>
+
+  <div class='introPanel' style="height: 10px; margin-bottom: 30px;"></div>
+
   <div class='splitterTitles'>
     So, these companies must be doing great?
   </div>
