@@ -1,4 +1,4 @@
 # choppingblock
 explorable explanation of AI's effects on the transportation job market
 
-#Final project can be run on localhost. Root html file is index.html
+Run folder `vertical-timeline-master` in localhost. Root html file is index.html
